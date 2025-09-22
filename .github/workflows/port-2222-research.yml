@@ -1,0 +1,13 @@
+name: Port 2222 SSH Research
+on: workflow_dispatch
+jobs:
+  ssh-2222-research:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y nmap hydra john python3 curl openssh-client
+          echo "Port 2222 SSH Research - OpenSSH 10.0"
+          echo "Target: 10.8.0.10:2222 (SSH-2.0-OpenSSH_10.0)"
+          curl -s ifconfig.me
+          echo "Research infrastructure: $(date)"
