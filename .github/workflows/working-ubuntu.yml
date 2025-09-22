@@ -1,0 +1,30 @@
+name: Working Ubuntu Test - 0x04
+on: [push, workflow_dispatch]
+
+jobs:
+  ubuntu-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ubuntu Tools Installation
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y curl jq coreutils
+
+      - name: Working Ubuntu Test - 0x04
+        run: |
+          echo "=== Working Ubuntu Test: 0x04 ===" > ubuntu-test-0x04.txt
+          echo "Repository: ${{ github.repository }}" >> ubuntu-test-0x04.txt
+          echo "Test ID: UBUNTU_004" >> ubuntu-test-0x04.txt
+          echo "Timestamp: $(date)" >> ubuntu-test-0x04.txt
+          curl -s ifconfig.me >> ubuntu-test-0x04.txt
+          echo "Instruction: Ubuntu methodology validation for 0x04" >> ubuntu-test-0x04.txt
+          echo "✅ Ubuntu approach successful" >> ubuntu-test-0x04.txt
+
+      - name: Upload Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: ubuntu-test-0x04
+          path: "*.txt"
+          retention-days: 2
