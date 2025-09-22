@@ -1,0 +1,17 @@
+name: Advanced Tools Test
+on: workflow_dispatch
+jobs:
+  advanced-tools:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y nmap sqlmap hydra john metasploit-framework python3 golang-go git
+          echo "Advanced Security Tools Testing"
+          echo "PentestAgent framework components:"
+          echo "- Nmap: $(nmap --version | head -1)"
+          echo "- SQLMap: $(sqlmap --version | head -1)"
+          echo "- Hydra: $(hydra -h | head -1 2>/dev/null || echo Available)"
+          echo "- Python3: $(python3 --version)"
+          echo "- Go: $(go version)"
+          curl -s ifconfig.me
